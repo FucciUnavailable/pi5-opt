@@ -1,4 +1,14 @@
 services:
+  litellm:
+    container_name: litellm
+    image: ghcr.io/berriai/litellm:main-latest
+    volumes:
+      - ./litellm-config.yaml:/app/config.yaml
+    ports:
+      - "127.0.0.1:4000:4000"
+    command: --config /app/config.yaml --port 4000
+    restart: unless-stopped
+
   open-webui:
     container_name: open-webui
     image: ghcr.io/open-webui/open-webui:main
@@ -7,5 +17,7 @@ services:
     ports:
       - "3002:8080"
     environment:
-      - OLLAMA_BASE_URL=https://api.openai.com/v1  # Or Anthropic, etc.
+      - OPENAI_API_BASE_URL=http://litellm:4000/v1
+    depends_on:
+      - litellm
     restart: unless-stopped

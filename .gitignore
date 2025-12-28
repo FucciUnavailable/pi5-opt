@@ -26,3 +26,4 @@ vaultwarden/data/
 nextcloud/data/
 nextcloud/config/
 outline/data/
+open-webui/*

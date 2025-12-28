@@ -1,4 +1,4 @@
-aspberry Pi 5 Home Lab
+# Raspberry Pi 5 Home Lab
 
 Complete self-hosted homelab setup with AI, cloud storage, monitoring, and smart home integration.
 

@@ -1,0 +1,18 @@
+services:
+  outline:
+    container_name: outline
+    image: outlinewiki/outline:latest
+    env_file: .env
+    ports:
+      - "8092:3000"
+    volumes:
+      - ./data:/var/lib/outline/data
+    depends_on:
+      - postgresql
+      - redis
+    restart: unless-stopped
+
+  redis:
+    container_name: outline-redis
+    image: redis:alpine
+    restart: unless-stopped

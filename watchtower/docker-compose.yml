@@ -1,0 +1,12 @@
+services:
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_CLEANUP=true
+      - WATCHTOWER_SCHEDULE=0 0 4 * * *  # 4 AM daily
+      - WATCHTOWER_NOTIFICATIONS=shoutrrr
+      - WATCHTOWER_NOTIFICATION_URL=  # Optional: add notification URL later
+    restart: unless-stopped

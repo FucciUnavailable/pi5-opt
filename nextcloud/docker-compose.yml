@@ -1,0 +1,21 @@
+services:
+  nextcloud:
+    container_name: nextcloud
+    image: nextcloud:latest
+    volumes:
+      - ./data:/var/www/html
+      - ./config:/var/www/html/config
+    environment:
+      - POSTGRES_HOST=postgresql
+      - POSTGRES_DB=nextcloud
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+    ports:
+      - "8091:80"
+    networks:
+      - services-network
+    restart: unless-stopped
+
+networks:
+  services-network:
+    external: true

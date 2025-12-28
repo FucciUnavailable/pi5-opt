@@ -17,3 +17,12 @@
 config/
 secrets.yaml
 .env
+
+# New services data
+nginx-proxy-manager/data/
+nginx-proxy-manager/letsencrypt/
+postgresql/data/
+vaultwarden/data/
+nextcloud/data/
+nextcloud/config/
+outline/data/

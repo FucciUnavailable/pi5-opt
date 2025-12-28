@@ -1,0 +1,18 @@
+services:
+  postgresql:
+    container_name: postgresql
+    image: postgres:16-alpine
+    volumes:
+      - ./data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=postgres
+    ports:
+      - "127.0.0.1:5432:5432"
+    networks:
+      - services-network
+    restart: unless-stopped
+
+networks:
+  services-network:
+    external: true

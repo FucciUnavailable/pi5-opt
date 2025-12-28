@@ -1,0 +1,12 @@
+services:
+  vaultwarden:
+    container_name: vaultwarden
+    image: vaultwarden/server:latest
+    volumes:
+      - ./data:/data
+    environment:
+      - DOMAIN=https://vault.yourdomain.com  # Change later with your domain
+      - SIGNUPS_ALLOWED=true  # Disable after creating your account
+    ports:
+      - "8090:80"
+    restart: unless-stopped

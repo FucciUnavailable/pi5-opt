@@ -1,0 +1,18 @@
+services:
+  nginx-proxy-manager:
+    container_name: nginx-proxy-manager
+    image: jc21/nginx-proxy-manager:latest
+    ports:
+      - "81:81"
+      - "80:80"      # Main port - no number needed in URLs!
+      - "443:443"
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - services-network
+    restart: unless-stopped
+
+networks:
+  services-network:
+    external: true

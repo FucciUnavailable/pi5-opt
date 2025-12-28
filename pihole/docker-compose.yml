@@ -2,11 +2,20 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    network_mode: host
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "8053:80/tcp"  # Pi-hole web on 8053 internally
     environment:
       TZ: ${TZ}
       WEBPASSWORD: ${HOLE_PASSWORD}
     volumes:
       - ./etc-pihole:/etc/pihole
       - ./etc-dnsmasq.d:/etc/dnsmasq.d
+    networks:
+      - services-network
     restart: unless-stopped
+
+networks:
+  services-network:
+    external: true

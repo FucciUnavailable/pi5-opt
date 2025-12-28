@@ -2,21 +2,11 @@ services:
   pihole:
     container_name: pihole
     image: pihole/pihole:latest
-    ports:
-      - "53:53/tcp"
-      - "53:53/udp"
-      - "8053:80/tcp"
+    network_mode: host
     environment:
       TZ: ${TZ}
       WEBPASSWORD: ${HOLE_PASSWORD}
-      DNSMASQ_LISTENING: local  
-      FTLCONF_REPLY_ADDR4: 192.168.1.0/24,10.0.0.0/8,100.64.0.0/10 
     volumes:
       - ./etc-pihole:/etc/pihole
       - ./etc-dnsmasq.d:/etc/dnsmasq.d
-    networks:
-      - services-network
     restart: unless-stopped
-networks:
-  services-network:
-    external: true

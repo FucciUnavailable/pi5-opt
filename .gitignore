@@ -1,0 +1,19 @@
+# Ignore all data and config directories
+*/data/
+*/config/
+*/.storage/
+*env*
+**/.env
+# But track compose files
+!*/docker-compose.yml
+
+*.db
+*.db-shm
+*.db-wal
+*.log
+*.log.*
+**/etc-pihole/
+**/etc-dnsmasq.d/
+config/
+secrets.yaml
+.env

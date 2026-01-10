@@ -7,9 +7,12 @@ services:
     ports:
       - "4000:4000"
     environment:
+      - DATABASE_URL=postgresql://postgres:${POSTGRES_PASSWORD}@postgresql:5432/litellm
       - LITELLM_MASTER_KEY=${LITELLM_MASTER_KEY}
       - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
       - OPENAI_API_KEY=${OPENAI_API_KEY}
+    networks:
+      - services-network
     command: --config /app/config.yaml --port 4000
     restart: unless-stopped
 
@@ -25,3 +28,6 @@ services:
     depends_on:
       - litellm
     restart: unless-stopped
+networks:
+  services-network:
+    external: true
